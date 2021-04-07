@@ -40,7 +40,10 @@
           v-for="(stdout, index) in local.history"
           :key="index"
           class="term-hist"
-          :class="{ 'term-hist-fullscreen' : (local.isFullscreen && index === local.history.length - 1) }">
+          :class="{
+			  'term-hist-fullscreen' : (local.isFullscreen && index === local.history.length - 1),
+			  'stdout-only': !stdout.includePromptAfter,
+			}">
           <stdout
             v-show="(!local.isFullscreen || index === local.history.length - 1)"
             :component="stdout"
